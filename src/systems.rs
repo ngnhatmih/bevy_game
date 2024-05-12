@@ -1,7 +1,6 @@
 use bevy::prelude::*;
 use bevy::window::WindowResized;
 use bevy_ecs_ldtk::prelude::*;
-use crate::components::*;
 
 pub fn setup(
     mut commands: Commands,
@@ -34,7 +33,6 @@ pub fn setup(
 
 }
 
-
 pub fn on_resize(
     mut resize_reader: EventReader<WindowResized>,
     mut camera: Query<(&OrthographicProjection, &mut Transform), With<Camera2d>>
@@ -48,4 +46,10 @@ pub fn on_resize(
         transform.translation.x += e.width / 2.0 * scale;
         transform.translation.y -= 536. - e.height / 2.0 * scale;
     }
+}
+
+#[derive(Default, Bundle, LdtkEntity)]
+pub struct PlayerBundle {
+    #[sprite_sheet_bundle("_Idle.png", 120., 80., 10, 1, 0., 0., 0)]
+    sprite_sheet_bundle: SpriteSheetBundle,
 }

@@ -1,8 +1,7 @@
 use bevy::prelude::*;
 use bevy_ecs_ldtk::prelude::*;
 
-mod system;
-mod component;
+mod systems;
 
 fn main() {        
     // tao app
@@ -23,6 +22,7 @@ fn main() {
             .set(ImagePlugin::default_nearest())
         )
         .add_plugins(LdtkPlugin)
+        .register_ldtk_entity::<systems::PlayerBundle>("Player")
         .insert_resource(LevelSelection::Uid(0))
         .insert_resource(LdtkSettings {
             level_spawn_behavior: LevelSpawnBehavior::UseWorldTranslation {
@@ -31,7 +31,7 @@ fn main() {
             set_clear_color: SetClearColor::FromLevelBackground,
             ..Default::default()
         })
-        .add_systems(Startup, system::setup)
-        .add_systems(Update, system::on_resize)
+        .add_systems(Startup, systems::setup)
+        .add_systems(Update, systems::on_resize)
         .run();
 }
