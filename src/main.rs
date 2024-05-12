@@ -4,8 +4,13 @@ use bevy_ecs_ldtk::prelude::*;
 mod system;
 mod component;
 
-fn main() {
-    App::new()
+fn main() {        
+    // tao app
+    // them plugins
+    // them resources
+    // them systems
+    // chay app
+    App::new()      
         .add_plugins(DefaultPlugins
             .set(WindowPlugin {
                 primary_window: Some(Window {
